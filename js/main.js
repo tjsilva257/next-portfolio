@@ -49,7 +49,6 @@ function rollComputerDice() {
 
 // Functie om te bepalen wie wint en punten toe te wijzen
 function determineWinner(guess) {
-    // Totaal van de dobbelstenen berekenen
     const playerTotal = playerDice1 + playerDice2;
     const computerTotal = computerDice1 + computerDice2;
 
@@ -61,23 +60,19 @@ function determineWinner(guess) {
     } else if (playerTotal === computerTotal) {
         document.querySelector('.message-box p').innerText = "Gelijkspel!";
     } else {
-        computerCredits += 5; // Computer wint
+        computerCredits += 5; 
         document.querySelector('.message-box p').innerText = "Computer wint! Computer krijgt 5 punten.";
     }
 
-    // Werk de credits in de HTML bij
     updateCredits();
 
-    // Schakel de Hoger en Lager knoppen weer uit
     document.querySelector('.higher-button').disabled = true;
     document.querySelector('.lower-button').disabled = true;
 
-    // Laat de speler weer gooien
     document.querySelector('.dice-button').disabled = false;
     document.querySelector('.message-box p').innerText = "Speler, gooi opnieuw!";
 }
 
-// Functie om het juiste Unicode-teken voor het dobbelsteenoppervlak terug te geven
 function getDiceCharacter(number) {
     switch (number) {
         case 1: return '&#9856;'; 
@@ -90,16 +85,13 @@ function getDiceCharacter(number) {
     }
 }
 
-// Functie om de credits bij te werken in de HTML
 function updateCredits() {
     document.querySelector('.player-credits').innerText = playerCredits;
     document.querySelector('.computer-credits').innerText = computerCredits;
 }
 
-// Koppel de functie startGame aan de klikgebeurtenis van de "GO" knop
 document.querySelector('.go-button').addEventListener('click', startGame);
 
-// Koppel de functie rollPlayerDice aan de klikgebeurtenis van de "Gooi dobbelsteen" knop, maar zet de knop eerst uit
 document.querySelector('.dice-button').addEventListener('click', rollPlayerDice);
 document.querySelector('.dice-button').disabled = true; // Zet de gooi-knop van de speler uit tot het spel gestart is
 

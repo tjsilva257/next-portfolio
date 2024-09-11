@@ -1,0 +1,17 @@
+.credits{
+   position: absolute;
+   left: 50px;
+   top: 15px;
+   font-family: "Arcade Classic Font";
+}
+
+@font-face {
+    font-family: "Arcade Classic Font";
+    src: url("C:\Fonts\arcadeclassic.regular.ttf"), local("Arcade Classic Font"),
+    url("C:\Fonts\arcadeclassic.regular.ttf");
+  }
+
+  body {
+    font-family: "Arcade Classic Font", sans-serif;
+  }
+
