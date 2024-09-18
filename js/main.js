@@ -93,7 +93,7 @@ function updateCredits() {
 document.querySelector('.go-button').addEventListener('click', startGame);
 
 document.querySelector('.dice-button').addEventListener('click', rollPlayerDice);
-document.querySelector('.dice-button').disabled = true; // Zet de gooi-knop van de speler uit tot het spel gestart is
+document.querySelector('.dice-button').disabled = true; // Zet de gooi-knop van de speler uit tot dat hetspel gestart is
 
 // Koppel de "Hoger" en "Lager" knoppen aan functies die de gok van de speler registreren
 document.querySelector('.higher-button').addEventListener('click', () => {

@@ -1,17 +1,55 @@
-.credits{
-   position: absolute;
-   left: 50px;
-   top: 15px;
-   font-family: "Arcade Classic Font";
+@font-face {
+  font-family: "arcadeclassic";
+  src: url(arcadeclassic.regular.ttf);
 }
 
-@font-face {
-    font-family: "Arcade Classic Font";
-    src: url("C:\Fonts\arcadeclassic.regular.ttf"), local("Arcade Classic Font"),
-    url("C:\Fonts\arcadeclassic.regular.ttf");
-  }
+h1 {
+  font-family: "arcadeclassic";
+}
 
-  body {
-    font-family: "Arcade Classic Font", sans-serif;
-  }
+.credits{
+   position: absolute;
+   left: 700px;
+   top: 120px;
+}
+
+.dices-computer-player{
+  position:absolute;
+
+   left: 550px;
+   top: 150px; 
+    display: inline-block;
+    padding: 2rem 2rem;
+}
+
+.dices-computer-player > .computer-dice-one{
+  position:absolute;
+  top:0;
+  left: 0;
+}
+
+
+.dices-computer-player > .computer-dice-two{
+  position:absolute;
+  top: 0px;
+  left:60px;
+}
+
+/* .headings{
+  position:absolute;
+  left: 600px;
+  top: 80px;
+} */
+
+
+.dice{
+  font-size: 64pt;
+}
+
+
+
+
+
+
+
 
