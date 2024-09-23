@@ -1,69 +1,80 @@
+/* Zet de body en container op volledige hoogte en gebruik flexbox voor centreren */
+html, body {
+  height: 100%;
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: "arcadeclassic";
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+}
+
+.dices {
+  padding: 10px;
+  column-count: 5;
+  column-fill: balance;
+}
+
+.headings {
+  padding: 10px;
+  column-count: 5;
+  column-fill: balance;
+}
+
+.credits {
+  column-count: 5;
+  column-fill: balance;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.dices-computer-player {
+  column-count: 2;
+}
+
+.dices-player {
+  column-count: 2;
+}
+
+.message {
+  column-count: 3;
+  column-fill: balance;
+}
+
+.message-box {
+  border: 1px solid black;
+}
+
+.controls {
+  padding: 10px;
+  column-count: 6;
+  column-fill: balance;
+}
+
+.dice {
+  font-size: 64pt;
+}
+
+button {
+  width: 100%;
+  font-family: "arcadeclassic";
+}
+
 @font-face {
   font-family: "arcadeclassic";
   src: url(arcadeclassic.regular.ttf);
 }
 
-h1 {
-  font-family: "arcadeclassic";
+.message-box {
+  text-anchor: middle;
 }
-
-.credits{
-   position: absolute;
-   left: 700px;
-   top: 120px;
-}
-
-.dices-computer-player{
-  position:absolute;
-
-   left: 550px;
-   top: 150px; 
-}
-
-.dices-computer-player > .computer-dice-one{
-  position:absolute;
-  top:0;
-  left: 0;
-}
-
-
-.dices-computer-player > .computer-dice-two{
-  position:absolute;
-  top: 1px;
-  left:60px;
-}
-
-.dice{
-  font-size: 64pt;
-}
-
-.dices-player{
-  position: absolute;
-  left: 800px;
-  top: 150px;
-}
-
-.dices-player > .player-dice-two{
-  position: absolute;
-  top:0;
-  left: 60px;
-}
-
-.message-text-center{
-  position:absolute;
-  top: 250px;
-  left: 625px;
-} 
-  .container{
-    position:absolute;
-    top:0;
-    left: 600px;
-  }
-
-
-
-
-
-
-
-
