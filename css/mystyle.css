@@ -77,4 +77,5 @@ button {
 
 .message-box {
   text-anchor: middle;
+  margin: auto;
 }
