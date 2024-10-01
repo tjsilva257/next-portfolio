@@ -79,3 +79,36 @@ button {
   text-anchor: middle;
   margin: auto;
 }
+
+.animeDice {
+  width: calc(6 * var(--pixel-size));
+  height: calc(6 * var(--pixel-size));
+  overflow: hidden;
+  background: red;
+}
+
+.anime_spritesheet {
+  animation: moveSpritesheet 1s steps(6) infinite;
+  width: calc(36 * var(--pixel-size));
+}
+
+.pixelart {
+  image-rendering: pixelated;
+}
+
+@keyframes moveSpritesheet {
+  from {
+    transform: translate3d(0px, 0,0);
+  }
+  to {
+    transform: translate3d(-95px, 0,0);
+  }
+}
+
+:root {
+  --pixel-size: 6px;
+}
+
+
+
+
