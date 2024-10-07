@@ -108,3 +108,4 @@ document.querySelector('.lower-button').addEventListener('click', () => {
 // Zet de Hoger en Lager knoppen uit totdat de speler heeft gegooid
 document.querySelector('.higher-button').disabled = true;
 document.querySelector('.lower-button').disabled = true;
+

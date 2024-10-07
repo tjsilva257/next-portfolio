@@ -87,12 +87,15 @@ button {
   background: red;
   position: absolute;
   bottom: 325px;
-  left: 509px;
+  left: 510px;
 }
 
 .anime_spritesheet {
   animation: moveSpritesheet 1s steps(6) infinite;
   width: calc(36 * var(--pixel-size));
+  position: absolute;
+  bottom: 0px;
+  left: 3px;
 }
 
 .pixelart {
@@ -104,7 +107,7 @@ button {
     transform: translate3d(0px, 0,0);
   }
   to {
-    transform: translate3d(-95px, 0,0);
+    transform: translate3d(-295px, 0,0);
   }
 }
 
@@ -112,6 +115,8 @@ button {
   --pixel-size: 8px;
 }
 
-
+.rollDice {
+  top: calc(-16px * var(--pixel-size))
+}
 
 
