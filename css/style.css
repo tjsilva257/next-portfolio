@@ -1,11 +1,7 @@
-.link {
-  position: absolute;
-  text-decoration: none;
-  top: 50%;
-  left: 47%;
-  background: yellow;
+* {
   margin: 0;
-  font-size: x-large;
+  padding: 0;
+  box-sizing: border-box;
 }
 
 .bg {
@@ -108,4 +104,23 @@
 
 .star-field .layer:nth-child(3) {
   animation: sf-fly-by-3 5s linear infinite;
+}
+
+.mainButton {
+  display: inline-block;
+  padding: 10px 20px;
+  background-color: yellow;
+  color: white;
+  text-decoration: none;
+  border-radius: 5px;
+}
+
+.mainButton:hover {
+  background-color: #0056b3;
+}
+
+.buttons {
+  position: absolute;
+  top: 20px;  
+  right: 20px; 
 }
