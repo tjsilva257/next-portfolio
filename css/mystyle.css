@@ -1,20 +1,25 @@
 /* Zet de body en container op volledige hoogte en gebruik flexbox voor centreren */
-html, body {
-  height: 100%;
-  margin: 0;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+* {
   font-family: "arcadeclassic";
+  color: white;
+}
+
+html, body {
+  height: 100%; /* Zorgt ervoor dat de html- en body-elementen de volledige hoogte innemen */
+  margin: 0; /* Verwijder standaardmarges */
+  display: flex; /* Maak de body een flexcontainer */
+  justify-content: center; /* Centreer de inhoud horizontaal */
+  align-items: center; /* Centreer de inhoud verticaal */
 }
 
 .container {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  width: 100%;
-  height: 100%;
+  display: flex; /* Flexbox wordt gebruikt om items te centreren */
+  flex-direction: column; /* Plaats alle elementen in een kolom */
+  justify-content: center; /* Centreer de inhoud verticaal in de container */
+  align-items: center; /* Centreer de inhoud horizontaal in de container */
+  width: 100%; /* De container neemt de volledige breedte in beslag */
+  height: 100%; /* De container neemt de volledige hoogte van het scherm in beslag */
+  text-align: center; /* Centreer de tekst in de container */
 }
 
 .dices {
@@ -35,6 +40,9 @@ html, body {
   column-count: 5;
   column-fill: balance;
   color: white;
+  position: absolute;
+  left: 425px;
+  top: 150px;
 }
 
 .text-center {
@@ -49,19 +57,64 @@ html, body {
   column-count: 2;
 }
 
+.player-dice-one {
+  position: absolute;
+  left: 825px;
+  top: 195px;
+}
+
+.player-dice-two {
+  position: absolute;
+  left: 900px;
+  top: 195px;
+}
+
+.player-header {
+  position: absolute;
+  left: 850px;
+  top: 130px;
+}
+
+.computer-header {
+  position: absolute;
+  left: 540px;
+  top: 130px;
+}
+
 .message {
-  column-count: 3;
-  column-fill: balance;
+  display: flex; /* Flexbox to center the message */
+  justify-content: center; /* Horizontally center the message box */
+  align-items: center; /* Vertically center the content within the section */
+  margin: 20px 0; /* Add some spacing around the message */
 }
 
+/* Flexbox wordt hier ook gebruikt om de tekst in de box centraal uit te lijnen */
 .message-box {
-  border: 1px solid black;
+    width: 80%; /* Set a width for the message box, so it doesn't stretch across the entire screen */
+    max-width: 600px; /* Limit the maximum width for better readability */
+    padding: 20px; /* Add padding inside the message box */
+    background-color: rgba(0, 0, 0, 0.6); /* Semi-transparent background */
+    color: white; /* White text */
+    border: 2px solid white; /* Add a white border */
+    text-align: center; /* Center the text within the box */
+    box-sizing: border-box; /* Ensure padding is included in the width */
 }
 
+/* Flexbox zorgt ervoor dat de knoppen gecentreerd worden en netjes onder elkaar staan */
 .controls {
-  padding: 10px;
-  column-count: 6;
-  column-fill: balance;
+  display: flex; /* Flexbox om de knoppen te beheren */
+  justify-content: center; /* Centreer de knoppen horizontaal */
+  align-items: center; /* Zorg ervoor dat de knoppen verticaal goed zijn uitgelijnd */
+  flex-direction: column; /* Zet de knoppen in een verticale kolom */
+  gap: 15px; /* Voeg ruimte (15px) toe tussen de knoppen */
+  margin-top: 20px; /* Voeg een kleine marge toe boven de knoppen voor visuele scheiding van de message-box */
+}
+
+.controls:disabled {
+  background-color: #777; /* A lighter shade of grey to indicate the button is disabled */
+  color: #ccc; /* A lighter text color */
+  border: 2px solid #ccc; /* Lighten the border as well */
+  cursor: not-allowed; /* Change the cursor to indicate it's not clickable */
 }
 
 .dice {
@@ -69,9 +122,26 @@ html, body {
   color: white;
 }
 
+/* Algemene stijling voor alle knoppen */
 button {
-  width: 100%;
-  font-family: "arcadeclassic";
+  width: 200px; /* Stel een vaste breedte in voor de knoppen */
+  padding: 10px; /* Voeg binnenruimte toe rond de knoptekst */
+  font-size: 16px; /* Zorg ervoor dat de tekstgrootte goed leesbaar is */
+  background-color: #333; /* Stel de achtergrondkleur van de knoppen in op donkergrijs */
+  color: white; /* Stel de tekstkleur in op wit voor goede contrast */
+  border: 2px solid white; /* Voeg een witte rand toe rond de knoppen */
+  cursor: pointer; /* Verander de cursor in een handje als je over de knop hovert */
+}
+
+button:disabled {
+  background-color: #777; /* A lighter shade of grey to indicate the button is disabled */
+  color: #ccc; /* A lighter text color */
+  border: 2px solid #ccc; /* Lighten the border as well */
+  cursor: not-allowed; /* Change the cursor to indicate it's not clickable */
+}
+
+button:hover {
+  background-color: #555; /* Verander de achtergrondkleur naar iets lichter als je over de knop beweegt */
 }
 
 @font-face {
@@ -83,9 +153,10 @@ button {
   text-anchor: middle;
   margin: auto;
   color: white;
+  font-size: larger;
 }
 
-.animeDice {
+ .animeDice {
   width: calc(6 * var(--pixel-size));
   height: calc(6 * var(--pixel-size));
   overflow: hidden;
@@ -95,16 +166,26 @@ button {
   left: 510px;
 }
 
+/* Voeg een animatie toe die de achtergrondpositie verandert */
+.animate-dice {
+  animation: roll 1s steps(6) infinite; /* 1s lang met 6 stappen voor elke zijde van de dobbelsteen */
+}
+
 .anime_spritesheet {
-  animation: moveSpritesheet 1s steps(6) infinite;
-  width: calc(36 * var(--pixel-size));
-  position: absolute;
-  bottom: 0px;
-  left: 3px;
+  width: 280px; /* Stel in op de breedte van een frame */
+  height: 685px; /* Stel in op de hoogte van een frame */
+  background-image: url('img/six sided die.png');
+  background-position: 0, 0;
+  background-repeat: no-repeat;
 }
 
 .pixelart {
   image-rendering: pixelated;
+}
+
+@keyframes roll {
+  from { background-position: 0 0; }
+  to { background-position: -384px 0; } /* Verplaats achtergrond afhankelijk van je spritesheet breedte */
 }
 
 @keyframes moveSpritesheet {
@@ -122,7 +203,7 @@ button {
 
 .rollDice {
   top: calc(-16px * var(--pixel-size))
-}
+} 
 
 .bg {
   background: url(https://i.ibb.co/87GbbFP/2799006.jpg) no-repeat;
@@ -224,4 +305,36 @@ button {
 
 .star-field .layer:nth-child(3) {
   animation: sf-fly-by-3 5s linear infinite;
+}
+
+/* New container to hold the headings and credits */
+.center-content {
+  display: flex; /* Flexbox to center contents */
+  flex-direction: column; /* Arrange in a vertical column */
+  justify-content: center; /* Vertically center the content */
+  align-items: center; /* Horizontally center the content */
+  height: 100%; /* Take up full screen height */
+  width: 100%; /* Take up full screen width */
+  position: absolute; /* So that it overlays in the middle */
+  top: 0;
+  left: 0;
+}
+
+/* Update these sections to ensure they are centered inside their container */
+.headings, .credits, .dices-computer-player, .dices-player {
+  margin: 0; /* Remove any margins */
+  padding: 10px;
+  color: white;
+  text-align: center; /* Ensure text is centered */
+  width: 100%;
+}
+
+/* Optional: Style to make them more visually aligned and spaced */
+.headings, .credits {
+  font-size: larger;
+  padding: 20px;
+}
+
+.dices-computer-player, .dices-player {
+  column-count: unset; /* Disable column layout so it centers */
 }

@@ -16,15 +16,10 @@
         body {
             font-family: "Bitstream Vera Serif Bold", serif;
             display: flex;
-            /* Use Flexbox for centering */
             justify-content: center;
-            /* Center horizontally */
             align-items: center;
-            /* Center vertically */
             height: 100vh;
-            /* Full height of the viewport */
             margin: 0;
-            /* Remove default margin */
         }
 
         .container {
@@ -36,16 +31,12 @@
         .credits h4,
         .message p {
             margin: 10px 0;
-            /* Add some margin for spacing */
         }
 
         .controls button {
             margin: 5px;
-            /* Add margin between buttons */
             padding: 10px 20px;
-            /* Add padding to buttons */
             font-size: 16px;
-            /* Increase font size */
         }
     </style>
 </head>
@@ -54,12 +45,12 @@
 
     <div class="container">
         <header>
-            <h1>Hoger Lager</h1>
+            <h1>Hoger of Lager</h1>
         </header>
         <main>
             <section class="headings">
-                <h3>Computer</h3>
-                <h3>Speler</h3>
+                <h3 class="computer-header">Computer</h3>
+                <h3 class="player-header">Speler</h3>
             </section>
             <section class="credits">
                 <h4>Credits: <span class="computer-credits">0</span></h4>
@@ -87,9 +78,9 @@
                 <button class="higher-button">Hoger</button>
                 <button class="lower-button">Lager</button>
                 <button class="go-button">GO</button>
-                <div class="animeDice">
+                <!-- <div class="animeDice">
                     <img class="anime_spritesheet pixelart" src="img/six sided die.png" alt="dobbelsteen">
-                </div>
+                </div> -->
             </section>
             <section>
                 <div class="bg"></div>
@@ -103,6 +94,19 @@
     </div>
 
     <script src="/js/main.js"></script>
+    <script>
+        // Functie om de naam van de speler te wijzigen
+        function changePlayerHeader() {
+            const newPlayerName = prompt("Voer de naam van de speler in:");
+            const playerHeader = document.querySelector('.player-header');
+            if (newPlayerName) {
+                playerHeader.textContent = newPlayerName; // Wijzig de tekst naar de nieuwe naam
+            }
+        }
+
+        // Roep de functie aan bij het laden van de pagina
+        window.onload = changePlayerHeader;
+    </script>
 </body>
 
 </html>

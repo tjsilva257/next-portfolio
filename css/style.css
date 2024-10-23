@@ -2,6 +2,12 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  font-family: "arcadeclassic";
+}
+
+@font-face {
+  font-family: "arcadeclassic";
+  src: url(arcadeclassic.regular.ttf);
 }
 
 .bg {
@@ -106,6 +112,7 @@
   animation: sf-fly-by-3 5s linear infinite;
 }
 
+/* Existing styles for .mainButton */
 .mainButton {
   display: inline-block;
   padding: 10px 20px;
@@ -113,14 +120,74 @@
   color: white;
   text-decoration: none;
   border-radius: 5px;
+  text-align: center;
+  width: 150px; /* Adjust width as needed */
 }
 
 .mainButton:hover {
   background-color: #0056b3;
 }
 
+/* Updated styles for vertical stacking */
 .buttons {
   position: absolute;
-  top: 50vh;  
-  left: 94vh; 
+  top: 50vh;
+  left: 50%;
+  transform: translate(-50%, -50%); /* Centers the buttons on the screen */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.buttons a {
+  margin: 10px 0; /* Adds vertical spacing between the buttons */
+}
+
+h1 {
+  color: white;
+  text-align: center;
+}
+
+h2 {
+  color: white;
+}
+
+p {
+  color: white;
+}
+
+ul {
+  color: white;
+}
+
+section {
+  position: absolute;
+  left: 30vh;
+  font-size: x-large;
+}
+
+.rulesButton {
+  display: inline-block;
+  padding: 10px 20px;
+  background-color: yellow;
+  color: white;
+  text-decoration: none;
+  border-radius: 5px;
+  text-align: center;
+  width: 150px;
+  position: absolute;
+  top: 95vh;
+  left: 50%;
+  transform: translate(-50%, -50%); /* Centers the buttons on the screen */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.rulesButton a {
+  margin: 10px 0;
+}
+
+.rulesButton:hover {
+  background-color: purple;
 }
