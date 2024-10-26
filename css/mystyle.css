@@ -81,6 +81,12 @@ html, body {
   top: 130px;
 }
 
+.computer-dice-one {
+  position: absolute;
+  left: 500px;
+  right: 700px;
+}
+
 .message {
   display: flex; /* Flexbox to center the message */
   justify-content: center; /* Horizontally center the message box */

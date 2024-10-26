@@ -8,11 +8,11 @@ let playerDice1, playerDice2, computerDice1, computerDice2; // Variabelen voor d
 
 function changePlayerHeader() {
     // Prompt voor nieuwe naam
-    let newName = prompt("Enter de naam voor de 'Speler'");
+    let newName = prompt("Voer de naam in voor de 'Speler'");
     
     // als de gebruiker een naam Entert dan verandert het
     if (newName) {
-        // Selecteert het element met de classe 'player-header' en verandert de text
+        // Selecteert het element met de klasse 'player-header' en verandert de tekst
         document.querySelector('.player-header').textContent = newName;
     }
 }
@@ -82,11 +82,18 @@ function determineWinner(guess) {
 
     updateCredits(); // Roep de functie aan om de credits bij te werken
 
-    document.querySelector('.higher-button').disabled = true; // Zet de knop 'Hoger' uit
-    document.querySelector('.lower-button').disabled = true; // Zet de knop 'Lager' uit
+    // Controleer of de credits 30 zijn
+    if (playerCredits >= 30) {
+        endGame('Speler heeft gewonnen!'); // Eindig het spel en geef een bericht weer
+    } else if (computerCredits >= 30) {
+        endGame('Computer heeft gewonnen!'); // Eindig het spel en geef een bericht weer
+    } else {
+        document.querySelector('.higher-button').disabled = true; // Zet de knop 'Hoger' uit
+        document.querySelector('.lower-button').disabled = true; // Zet de knop 'Lager' uit
 
-    document.querySelector('.dice-button').disabled = false; // Maak de gooi-knop weer actief voor een nieuwe ronde
-    document.querySelector('.message-box p').innerText = "Speler, gooi opnieuw!"; // Update het bericht voor de speler
+        document.querySelector('.dice-button').disabled = false; // Maak de gooi-knop weer actief voor een nieuwe ronde
+        document.querySelector('.message-box p').innerText = "Speler, gooi opnieuw!"; // Update het bericht voor de speler
+    }
 }
 
 // Functie om de juiste dobbelsteenkarakter op basis van het nummer terug te geven
@@ -106,6 +113,15 @@ function getDiceCharacter(number) {
 function updateCredits() {
     document.querySelector('.player-credits').innerText = playerCredits; // Update de credits voor de speler
     document.querySelector('.computer-credits').innerText = computerCredits; // Update de credits voor de computer
+}
+
+// Functie om het spel te beëindigen
+function endGame(message) {
+    gameStarted = false; // Zet gameStarted op false
+    document.querySelector('.message-box p').innerText = message; // Toon het eindbericht
+    document.querySelector('.dice-button').disabled = true; // Zet de dobbelsteenknop uit
+    document.querySelector('.higher-button').disabled = true; // Zet de Hoger-knop uit
+    document.querySelector('.lower-button').disabled = true; // Zet de Lager-knop uit
 }
 
 // Event listener voor de startknop die het spel begint
