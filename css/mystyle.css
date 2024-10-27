@@ -81,6 +81,12 @@ html, body {
   top: 130px;
 }
 
+.computer-dice-one{
+  position: absolute;
+  left: 600px;
+  top: 185px;
+}
+
 .message {
   display: flex; /* Flexbox to center the message */
   justify-content: center; /* Horizontally center the message box */
@@ -155,55 +161,6 @@ button:hover {
   color: white;
   font-size: larger;
 }
-
- .animeDice {
-  width: calc(6 * var(--pixel-size));
-  height: calc(6 * var(--pixel-size));
-  overflow: hidden;
-  background: red;
-  position: absolute;
-  bottom: 325px;
-  left: 510px;
-}
-
-/* Voeg een animatie toe die de achtergrondpositie verandert */
-.animate-dice {
-  animation: roll 1s steps(6) infinite; /* 1s lang met 6 stappen voor elke zijde van de dobbelsteen */
-}
-
-.anime_spritesheet {
-  width: 280px; /* Stel in op de breedte van een frame */
-  height: 685px; /* Stel in op de hoogte van een frame */
-  background-image: url('img/six sided die.png');
-  background-position: 0, 0;
-  background-repeat: no-repeat;
-}
-
-.pixelart {
-  image-rendering: pixelated;
-}
-
-@keyframes roll {
-  from { background-position: 0 0; }
-  to { background-position: -384px 0; } /* Verplaats achtergrond afhankelijk van je spritesheet breedte */
-}
-
-@keyframes moveSpritesheet {
-  from {
-    transform: translate3d(0px, 0,0);
-  }
-  to {
-    transform: translate3d(-295px, 0,0);
-  }
-}
-
-:root {
-  --pixel-size: 8px;
-}
-
-.rollDice {
-  top: calc(-16px * var(--pixel-size))
-} 
 
 .bg {
   background: url(https://i.ibb.co/87GbbFP/2799006.jpg) no-repeat;
