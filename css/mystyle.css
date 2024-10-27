@@ -51,22 +51,16 @@ html, body {
 
 .dices-computer-player {
   column-count: 2;
+  position: absolute;
+  top: 175px;
+  left: -175px;
 }
 
 .dices-player {
   column-count: 2;
-}
-
-.player-dice-one {
+  top: 175px;
+  left: 140px;
   position: absolute;
-  left: 825px;
-  top: 195px;
-}
-
-.player-dice-two {
-  position: absolute;
-  left: 900px;
-  top: 195px;
 }
 
 .player-header {
@@ -81,10 +75,11 @@ html, body {
   top: 130px;
 }
 
-.computer-dice-one{
-  position: absolute;
-  left: 600px;
-  top: 185px;
+.dices-computer-player, .dices-player {
+  display: flex; /* Gebruik flexbox */
+  justify-content: center; /* Centreer dobbelstenen horizontaal */
+  gap: 20px; /* Voeg ruimte toe tussen de dobbelstenen */
+  padding: 20px; /* Voeg padding toe */
 }
 
 .message {
@@ -104,6 +99,9 @@ html, body {
     border: 2px solid white; /* Add a white border */
     text-align: center; /* Center the text within the box */
     box-sizing: border-box; /* Ensure padding is included in the width */
+    position: absolute;
+    top: 350px;
+    left: 450px;
 }
 
 /* Flexbox zorgt ervoor dat de knoppen gecentreerd worden en netjes onder elkaar staan */
@@ -114,6 +112,9 @@ html, body {
   flex-direction: column; /* Zet de knoppen in een verticale kolom */
   gap: 15px; /* Voeg ruimte (15px) toe tussen de knoppen */
   margin-top: 20px; /* Voeg een kleine marge toe boven de knoppen voor visuele scheiding van de message-box */
+  position: absolute;
+  top: 450px;
+  left: 650px;
 }
 
 .controls:disabled {

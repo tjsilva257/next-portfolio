@@ -5,6 +5,7 @@ let gameStarted = false; // Houdt bij of het spel gestart is
 let playerCredits = 0; // Houdt de punten van de speler bij
 let computerCredits = 0; // Houdt de punten van de computer bij
 let playerDice1, playerDice2, computerDice1, computerDice2; // Variabelen voor de waarden van de dobbelstenen
+let correctGuessesInARow = 0; // Teller voor opeenvolgende juiste gokken van de speler
 
 function changePlayerHeader() {
     // Prompt voor nieuwe naam
@@ -69,62 +70,78 @@ function determineWinner(guess) {
     const computerTotal = computerDice1 + computerDice2; // Bereken de totale waarde van de dobbelstenen van de computer
 
     // Vergelijk de totale waarden en bepaal de winnaar
-    if ((guess === 'hoger' && playerTotal > computerTotal) || // Controleer of de gok 'hoger' was en de speler gewonnen heeft
-        (guess === 'lager' && playerTotal < computerTotal)) { // Controleer of de gok 'lager' was en de speler gewonnen heeft
+    if ((guess === 'hoger' && playerTotal > computerTotal) || 
+        (guess === 'lager' && playerTotal < computerTotal)) { // Controleer of de gok 'hoger' of 'lager' was en de speler gewonnen heeft
         playerCredits += 5; // Speler wint en krijgt 5 punten
-        document.querySelector('.message-box p').innerText = "Je hebt gewonnen! Je krijgt 5 punten."; // Update het bericht
+        correctGuessesInARow++; // Verhoog de teller voor opeenvolgende juiste gokken
+        if (correctGuessesInARow === 3) { // Controleer of de speler 3 keer achter elkaar juist gokt
+            playerCredits += 10; // Voeg 10 bonuspunten toe
+            correctGuessesInARow = 0; // Reset de teller voor opeenvolgende juiste gokken
+            document.querySelector('.message-box p').innerText = "3 keer goed geraden! Je krijgt 10 bonuspunten."; // Update het bericht
+        } else {
+            document.querySelector('.message-box p').innerText = "Je hebt gewonnen! Je krijgt 5 punten."; // Update het bericht
+        }
     } else if (playerTotal === computerTotal) { // Controleert of er sprake is van gelijkspel
         document.querySelector('.message-box p').innerText = "Het is Gelijkspel!"; // Update het bericht voor gelijkspel
+        correctGuessesInARow = 0; // Reset de teller als er geen winnaar is
     } else {
         computerCredits += 5; // Computer wint en krijgt 5 punten
         document.querySelector('.message-box p').innerText = "Computer wint! Computer krijgt 5 punten."; // Update het bericht
+        correctGuessesInARow = 0; // Reset de teller als de speler verliest
     }
 
-    updateCredits(); // Roep de functie aan om de credits bij te werken
+    checkGameEnd(); // Controleer of het spel moet eindigen
+    updateCredits(); // Werk de score bij in de interface
 
     document.querySelector('.higher-button').disabled = true; // Zet de knop 'Hoger' uit
     document.querySelector('.lower-button').disabled = true; // Zet de knop 'Lager' uit
-
     document.querySelector('.dice-button').disabled = false; // Maak de gooi-knop weer actief voor een nieuwe ronde
-    document.querySelector('.message-box p').innerText = "Speler, gooi opnieuw!"; // Update het bericht voor de speler
+}
+
+// Functie om te controleren of het spel voorbij is (bij 30 punten)
+function checkGameEnd() {
+    if (playerCredits >= 30 || computerCredits >= 30) { // Controleer of een speler 30 punten heeft bereikt
+        document.querySelector('.message-box p').innerText = 
+            playerCredits >= 30 ? "Gefeliciteerd, je hebt gewonnen! klik op go om opnieuw te spelen" : "Computer wint het spel!";
+        playerCredits = 0; // Reset de punten van de speler
+        computerCredits = 0; // Reset de punten van de computer
+        correctGuessesInARow = 0; // Reset de reeks juiste gokken
+        gameStarted = false; // Zet het spel terug op niet-gestart
+    }
 }
 
 // Functie om de juiste dobbelsteenkarakter op basis van het nummer terug te geven
 function getDiceCharacter(number) {
     switch (number) {
-        case 1: return '&#9856;'; // Unicode karakter voor dobbelsteen 1
-        case 2: return '&#9857;'; // Unicode karakter voor dobbelsteen 2
-        case 3: return '&#9858;'; // Unicode karakter voor dobbelsteen 3
-        case 4: return '&#9859;'; // Unicode karakter voor dobbelsteen 4
-        case 5: return '&#9860;'; // Unicode karakter voor dobbelsteen 5
-        case 6: return '&#9861;'; // Unicode karakter voor dobbelsteen 6
-        default: return ''; // Zou nooit moeten gebeuren
+        case 1: return '&#9856;';
+        case 2: return '&#9857;';
+        case 3: return '&#9858;';
+        case 4: return '&#9859;';
+        case 5: return '&#9860;';
+        case 6: return '&#9861;';
+        default: return '';
     }
 }
 
 // Functie om de credits van de speler en de computer bij te werken in de interface
 function updateCredits() {
-    document.querySelector('.player-credits').innerText = playerCredits; // Update de credits voor de speler
-    document.querySelector('.computer-credits').innerText = computerCredits; // Update de credits voor de computer
+    document.querySelector('.player-credits').innerText = playerCredits;
+    document.querySelector('.computer-credits').innerText = computerCredits;
 }
 
 // Event listener voor de startknop die het spel begint
-document.querySelector('.go-button').addEventListener('click', startGame); // Voegt een klik-event toe aan de startknop
-
-// Event listener voor de gooi-knop van de speler
-document.querySelector('.dice-button').addEventListener('click', rollPlayerDice); // Voegt een klik-event toe aan de gooi-knop
-document.querySelector('.dice-button').disabled = true; // Zet de gooi-knop uit tot het spel gestart is
-
-// Koppel de "Hoger" en "Lager" knoppen aan functies die de gok van de speler registreren
+document.querySelector('.go-button').addEventListener('click', startGame);
+document.querySelector('.dice-button').addEventListener('click', rollPlayerDice);
+document.querySelector('.dice-button').disabled = true;
 document.querySelector('.higher-button').addEventListener('click', () => {
-    rollComputerDice(); // Roep de functie aan om de dobbelstenen van de computer te gooien
-    determineWinner('hoger'); // Bepaal de winnaar op basis van de gok van de speler
+    rollComputerDice();
+    determineWinner('hoger');
 });
 document.querySelector('.lower-button').addEventListener('click', () => {
-    rollComputerDice(); // Roep de functie aan om de dobbelstenen van de computer te gooien
-    determineWinner('lager'); // Bepaal de winnaar op basis van de gok van de speler
+    rollComputerDice();
+    determineWinner('lager');
 });
 
 // Zet de Hoger en Lager knoppen uit totdat de speler heeft gegooid
-document.querySelector('.higher-button').disabled = true; // Hoger-knop is inactief tot de speler heeft gegooid
-document.querySelector('.lower-button').disabled = true; // Lager-knop is inactief tot de speler heeft gegooid
+document.querySelector('.higher-button').disabled = true;
+document.querySelector('.lower-button').disabled = true;
